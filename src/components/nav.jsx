@@ -7,7 +7,7 @@ const navLinks = [
   { label: 'Calendar', to: '/calendar' },
 ]
 
-export default function Nav() {
+export default function Nav({ onProtectedClick }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const MotionNav = motion.nav
   const MotionDiv = motion.div
@@ -24,12 +24,13 @@ export default function Nav() {
         <ul className="hidden md:flex items-center gap-6">
           {navLinks.map(({ label, to }) => (
             <li key={label}>
-              <Link
-                to={to}
-                className="text-base font-medium text-white/70 transition-colors duration-300 hover:text-white"
+              <button
+                onClick={() => onProtectedClick?.(to)}
+                className="text-base font-medium text-white/70 transition-colors duration-300 hover:text-white
+                           bg-transparent border-none cursor-pointer"
               >
                 {label}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>
@@ -84,14 +85,17 @@ export default function Nav() {
             className="md:hidden mt-3 mx-2 glass-nav rounded-2xl px-5 py-4 flex flex-col gap-3"
           >
             {navLinks.map(({ label, to }) => (
-              <Link
+              <button
                 key={label}
-                to={to}
-                onClick={() => setMobileOpen(false)}
-                className="text-base font-medium text-white/70 transition-colors duration-300 hover:text-white py-2"
+                onClick={() => {
+                  setMobileOpen(false)
+                  onProtectedClick?.(to)
+                }}
+                className="text-base font-medium text-white/70 transition-colors duration-300 hover:text-white py-2
+                           bg-transparent border-none cursor-pointer text-left"
               >
                 {label}
-              </Link>
+              </button>
             ))}
           </MotionDiv>
         )}

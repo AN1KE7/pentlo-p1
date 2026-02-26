@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 import HeroIllustration from '../assets/pentlo-illustration.png'
 
 export default function Lander() {
+  const { onProtectedClick } = useOutletContext()
+
   return (
     <section className="relative z-10 w-full min-h-screen flex items-center justify-center overflow-hidden
                         px-5 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-36
@@ -62,16 +64,16 @@ export default function Lander() {
           </span>
 
           {/* CTA Button */}
-          <Link
-            to="/create"
+          <button
+            onClick={() => onProtectedClick?.('/create')}
             className="nav-cta mt-6 md:mt-8 inline-block text-sm sm:text-base font-semibold text-white
-                       px-7 py-2.5 sm:px-8 sm:py-3 rounded-full
+                       px-7 py-2.5 sm:px-8 sm:py-3 rounded-full cursor-pointer
                        transition-all duration-300
                        hover:brightness-110 hover:scale-[1.04] hover:shadow-lg hover:shadow-purple-500/25
                        active:brightness-90 active:scale-[0.97]"
           >
             Create Now
-          </Link>
+          </button>
         </div>
 
       </div>
