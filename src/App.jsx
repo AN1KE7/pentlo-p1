@@ -58,6 +58,16 @@ function MarketingLayout() {
   )
 }
 
+function ProtectedRoute({ children }) {
+  const { user } = useAuth()
+
+  if (!user) {
+    return <Navigate to="/signin" replace />
+  }
+
+  return children
+}
+
 function PlaceholderPage({ title, description }) {
   return (
     <section className="relative z-10 w-full min-h-screen flex items-center justify-center px-5">
@@ -76,15 +86,15 @@ function App() {
         <Route path="/" element={<Lander />} />
         <Route
           path="/events"
-          element={<PlaceholderPage title="Events" description="Events route wired with React Router." />}
+          element={<ProtectedRoute><PlaceholderPage title="Events" description="Events route wired with React Router." /></ProtectedRoute>}
         />
         <Route
           path="/calendar"
-          element={<PlaceholderPage title="Calendar" description="Calendar route wired with React Router." />}
+          element={<ProtectedRoute><PlaceholderPage title="Calendar" description="Calendar route wired with React Router." /></ProtectedRoute>}
         />
         <Route
           path="/create"
-          element={<PlaceholderPage title="Create" description="Create route wired with React Router." />}
+          element={<ProtectedRoute><PlaceholderPage title="Create" description="Create route wired with React Router." /></ProtectedRoute>}
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
