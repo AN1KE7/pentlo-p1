@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const navLinks = [
-  { label: 'Events', href: '/events' },
-  { label: 'Calendar', href: '/calendar' },
+  { label: 'Events', to: '/events' },
+  { label: 'Calendar', to: '/calendar' },
 ]
 
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const MotionNav = motion.nav
+  const MotionDiv = motion.div
 
   return (
-    <motion.nav
+    <MotionNav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -19,14 +22,14 @@ export default function Nav() {
       <div className="glass-nav flex items-center justify-between px-3 py-2 sm:px-6 sm:py-2.5 rounded-full">
         {/* ── Left: Nav Links (desktop) ── */}
         <ul className="hidden md:flex items-center gap-6">
-          {navLinks.map(({ label, href }) => (
+          {navLinks.map(({ label, to }) => (
             <li key={label}>
-              <a
-                href={href}
+              <Link
+                to={to}
                 className="text-base font-medium text-white/70 transition-colors duration-300 hover:text-white"
               >
                 {label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -52,44 +55,47 @@ export default function Nav() {
         </button>
 
         {/* ── Center: Brand ── */}
-        <span className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold tracking-widest text-white select-none">
+        <Link
+          to="/"
+          className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold tracking-widest text-white select-none"
+        >
           Pentlo
-        </span>
+        </Link>
 
         {/* ── Right: CTA ── */}
-        <a
-          href="/signin"
+        <Link
+          to="/signin"
           className="nav-cta relative text-sm font-semibold text-white px-5 py-2 rounded-full transition-all duration-300
                      hover:brightness-110 hover:scale-[1.04] hover:shadow-lg hover:shadow-purple-500/25
                      active:brightness-90 active:scale-[0.97]"
         >
           Sign In
-        </a>
+        </Link>
       </div>
 
       {/* ── Mobile Dropdown Menu ── */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="md:hidden mt-3 mx-2 glass-nav rounded-2xl px-5 py-4 flex flex-col gap-3"
           >
-            {navLinks.map(({ label, href }) => (
-              <a
+            {navLinks.map(({ label, to }) => (
+              <Link
                 key={label}
-                href={href}
+                to={to}
                 onClick={() => setMobileOpen(false)}
                 className="text-base font-medium text-white/70 transition-colors duration-300 hover:text-white py-2"
               >
                 {label}
-              </a>
+              </Link>
             ))}
-          </motion.div>
+          </MotionDiv>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </MotionNav>
   )
 }

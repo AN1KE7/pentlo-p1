@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import HeroIllustration from '../assets/pentlo-illustration.png'
 
 export default function Lander() {
@@ -61,8 +62,8 @@ export default function Lander() {
           </span>
 
           {/* CTA Button */}
-          <a
-            href="/create"
+          <Link
+            to="/create"
             className="nav-cta mt-6 md:mt-8 inline-block text-sm sm:text-base font-semibold text-white
                        px-7 py-2.5 sm:px-8 sm:py-3 rounded-full
                        transition-all duration-300
@@ -70,7 +71,7 @@ export default function Lander() {
                        active:brightness-90 active:scale-[0.97]"
           >
             Create Now
-          </a>
+          </Link>
         </div>
 
       </div>
