@@ -77,11 +77,11 @@ body {
 
 @keyframes pentloPulse {
   0%, 100% {
-    opacity: 0.6;
+    opacity: 0.75;
     transform: scale(1.15);
   }
   50% {
-    opacity: .75;
+    opacity: 0.8;
     transform: scale(1.25);
   }
 }
@@ -107,4 +107,34 @@ body {
   .from-pentlo-purple { --tw-gradient-from: var(--color-pentlo-purple); }
   .via-pentlo-blue { --tw-gradient-via: var(--color-pentlo-blue); }
   .to-pentlo-green { --tw-gradient-to: var(--color-pentlo-green); }
+
+  /* Glassmorphism Navbar */
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* CTA Gradient Button */
+  .nav-cta {
+    background: linear-gradient(
+      180deg,
+      var(--color-pentlo-purple),
+      var(--color-pentlo-pink)
+    );
+    box-shadow: 0 4px 16px rgba(107, 92, 255, 0.3);
+  }
+
+  /* Hero Typography */
+  .hero-font-lugrasimo {
+    font-family: 'Lugrasimo', cursive, sans-serif;
+  }
+
+  .hero-font-alice {
+    font-family: 'Alice', Georgia, 'Times New Roman', serif;
+  }
 }
