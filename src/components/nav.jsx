@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
   { label: 'Events', href: '/events' },
-  { label: 'Calender', href: '/calender' },
+  { label: 'Calendar', href: '/calendar' },
 ]
 
 export default function Nav() {
