@@ -1,4 +1,15 @@
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
+
 export default function SignIn() {
+  const navigate = useNavigate()
+  const { login } = useAuth()
+
+  const handleSignIn = () => {
+    login()
+    navigate('/dashboard')
+  }
+
   return (
     <section className="relative z-10 w-full flex items-center justify-center px-5">
       <div className="glass-card w-full max-w-[420px] rounded-3xl px-8 py-10 text-center">
@@ -15,6 +26,7 @@ export default function SignIn() {
         {/* Google Sign-In Button */}
         <button
           type="button"
+          onClick={handleSignIn}
           className="mt-8 w-full flex items-center justify-center gap-3 bg-white text-gray-900 font-medium text-sm
                      rounded-xl px-5 py-3.5 cursor-pointer
                      transition-all duration-200 ease-out

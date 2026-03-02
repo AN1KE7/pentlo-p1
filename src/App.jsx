@@ -1,79 +1,18 @@
-import { useState } from 'react'
-import { Navigate, Outlet, Route, Routes, useNavigate } from 'react-router-dom'
-import { useAuth } from './context/AuthContext'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './index.css'
-import Nav from './components/nav'
-import Lander from './components/lander'
-import Footer from './components/footer'
-import AuthLayout from './components/AuthLayout'
-import AuthModal from './components/AuthModal'
-import SignIn from './components/SignIn'
+import Lander from './pages/marketing/LandingPage'
+import AuthLayout from './layouts/AuthLayout'
+import SignIn from './pages/auth/SignIn'
+import MarketingLayout from './layouts/MarketingLayout'
+import ProtectedRoute from './routes/ProtectedRoute'
 
-function MarketingLayout() {
-  const { user } = useAuth()
-  const navigate = useNavigate()
-  const [showAuthModal, setShowAuthModal] = useState(false)
-  const [pendingPath, setPendingPath] = useState(null)
-
-  const handleProtectedClick = (path) => {
-    if (user) {
-      navigate(path)
-    } else {
-      setPendingPath(path)
-      setShowAuthModal(true)
-    }
-  }
-
-  const handleAuthSuccess = () => {
-    setShowAuthModal(false)
-    if (pendingPath) {
-      navigate(pendingPath)
-      setPendingPath(null)
-    }
-  }
-
-  const handleModalClose = () => {
-    setShowAuthModal(false)
-    setPendingPath(null)
-  }
-
-  return (
-    <main className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-      <Nav onProtectedClick={handleProtectedClick} />
-
-      <div className="fixed inset-0 w-screen h-screen pointer-events-none flex items-center justify-center">
-        <div className="pentlo-glow w-[150vmax] h-[150vmax] opacity-50" />
-      </div>
-
-      <Outlet context={{ onProtectedClick: handleProtectedClick }} />
-
-      <Footer />
-
-      <AuthModal
-        isOpen={showAuthModal}
-        onClose={handleModalClose}
-        onSuccess={handleAuthSuccess}
-      />
-    </main>
-  )
-}
-
-function ProtectedRoute({ children }) {
-  const { user } = useAuth()
-
-  if (!user) {
-    return <Navigate to="/signin" replace />
-  }
-
-  return children
-}
 
 function PlaceholderPage({ title, description }) {
   return (
     <section className="relative z-10 w-full min-h-screen flex items-center justify-center px-5">
       <div className="glass-nav rounded-3xl px-8 py-10 text-center max-w-xl">
-        <h1 className="text-4xl sm:text-5xl text-white font-semibold tracking-tight">{title}</h1>
-        <p className="mt-4 text-white/70 text-base sm:text-lg">{description}</p>
+        <h1 className="text-4xl sm:text-5xl text-black font-semibold tracking-tight">{title}</h1>
+        <p className="mt-4 text-black/70 text-base sm:text-lg">{description}</p>
       </div>
     </section>
   )
@@ -82,26 +21,34 @@ function PlaceholderPage({ title, description }) {
 function App() {
   return (
     <Routes>
+      {/* ── Marketing (public) ── */}
       <Route element={<MarketingLayout />}>
         <Route path="/" element={<Lander />} />
-        <Route
-          path="/events"
-          element={<ProtectedRoute><PlaceholderPage title="Events" description="Events route wired with React Router." /></ProtectedRoute>}
-        />
-        <Route
-          path="/calendar"
-          element={<ProtectedRoute><PlaceholderPage title="Calendar" description="Calendar route wired with React Router." /></ProtectedRoute>}
-        />
-        <Route
-          path="/create"
-          element={<ProtectedRoute><PlaceholderPage title="Create" description="Create route wired with React Router." /></ProtectedRoute>}
-        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
 
+      {/* ── Auth ── */}
       <Route element={<AuthLayout />}>
         <Route path="/signin" element={<SignIn />} />
       </Route>
+
+      {/* ── Dashboard (protected) ── */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Dashboard" description="Welcome to your Pentlo dashboard." />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/create"
+        element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Create Event" description="Create a new event for your audience." />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   )
 }

@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
-const navLinks = [
-  { label: 'Events', to: '/events' },
-  { label: 'Calendar', to: '/calendar' },
+const scrollLinks = [
+  { label: 'Events', section: 'events' },
+  { label: 'Calendar', section: 'calendar' },
 ]
 
-export default function Nav({ onProtectedClick }) {
+export default function Nav({ onScrollRequest }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const MotionNav = motion.nav
   const MotionDiv = motion.div
@@ -20,12 +20,12 @@ export default function Nav({ onProtectedClick }) {
       className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[80%]"
     >
       <div className="glass-nav flex items-center justify-between px-3 py-2 sm:px-6 sm:py-2.5 rounded-full">
-        {/* ── Left: Nav Links (desktop) ── */}
+        {/* ── Left: Scroll Links (desktop) ── */}
         <ul className="hidden md:flex items-center gap-6">
-          {navLinks.map(({ label, to }) => (
+          {scrollLinks.map(({ label, section }) => (
             <li key={label}>
               <button
-                onClick={() => onProtectedClick?.(to)}
+                onClick={() => onScrollRequest?.(section)}
                 className="text-base font-medium text-white/70 transition-colors duration-300 hover:text-white
                            bg-transparent border-none cursor-pointer"
               >
@@ -56,12 +56,13 @@ export default function Nav({ onProtectedClick }) {
         </button>
 
         {/* ── Center: Brand ── */}
-        <Link
-          to="/"
-          className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold tracking-widest text-white select-none"
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold tracking-widest text-white select-none
+                     bg-transparent border-none cursor-pointer"
         >
           Pentlo
-        </Link>
+        </button>
 
         {/* ── Right: CTA ── */}
         <Link
@@ -84,12 +85,12 @@ export default function Nav({ onProtectedClick }) {
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="md:hidden mt-3 mx-2 glass-nav rounded-2xl px-5 py-4 flex flex-col gap-3"
           >
-            {navLinks.map(({ label, to }) => (
+            {scrollLinks.map(({ label, section }) => (
               <button
                 key={label}
                 onClick={() => {
                   setMobileOpen(false)
-                  onProtectedClick?.(to)
+                  onScrollRequest?.(section)
                 }}
                 className="text-base font-medium text-white/70 transition-colors duration-300 hover:text-white py-2
                            bg-transparent border-none cursor-pointer text-left"
