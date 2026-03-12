@@ -1,5 +1,5 @@
 import { useOutletContext } from 'react-router-dom'
-import HeroIllustration from '../../assets/pentlo-illustration.png'
+import HeroIllustration from '../../assets/images/pentlo-illustration.png'
 
 export default function Lander() {
   const { onProtectedClick, eventsRef, calendarRef } = useOutletContext()

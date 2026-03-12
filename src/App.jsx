@@ -4,19 +4,14 @@ import Lander from './pages/marketing/LandingPage'
 import AuthLayout from './layouts/AuthLayout'
 import SignIn from './pages/auth/SignIn'
 import MarketingLayout from './layouts/MarketingLayout'
+import DashboardLayout from './layouts/DashboardLayout'
 import ProtectedRoute from './routes/ProtectedRoute'
-
-
-function PlaceholderPage({ title, description }) {
-  return (
-    <section className="relative z-10 w-full min-h-screen flex items-center justify-center px-5">
-      <div className="glass-nav rounded-3xl px-8 py-10 text-center max-w-xl">
-        <h1 className="text-4xl sm:text-5xl text-black font-semibold tracking-tight">{title}</h1>
-        <p className="mt-4 text-black/70 text-base sm:text-lg">{description}</p>
-      </div>
-    </section>
-  )
-}
+import Dashboard from './pages/dashboard/Dashboard'
+import CreateEvent from './pages/dashboard/CreateEvent'
+import Events from './pages/dashboard/Events'
+import Calendar from './pages/dashboard/Calendar'
+import Invites from './pages/dashboard/Invites'
+import Settings from './pages/dashboard/Settings'
 
 function App() {
   return (
@@ -34,23 +29,22 @@ function App() {
 
       {/* ── Dashboard (protected) ── */}
       <Route
-        path="/dashboard"
         element={
           <ProtectedRoute>
-            <PlaceholderPage title="Dashboard" description="Welcome to your Pentlo dashboard." />
+            <DashboardLayout />
           </ProtectedRoute>
         }
-      />
-      <Route
-        path="/dashboard/create"
-        element={
-          <ProtectedRoute>
-            <PlaceholderPage title="Create Event" description="Create a new event for your audience." />
-          </ProtectedRoute>
-        }
-      />
+      >
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/create" element={<CreateEvent />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/invites" element={<Invites />} />
+        <Route path="/settings" element={<Settings />} />
+      </Route>
     </Routes>
   )
 }
 
 export default App
+

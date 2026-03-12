@@ -7,7 +7,7 @@ export function AuthProvider({ children }) {
 
   const login = () => {
     // Mock login — replace with real OAuth later
-    setUser({ name: 'User', email: 'user@pentlo.com' })
+    setUser({ name: 'Aniket', email: 'aniket@pentlo.com' })
   }
 
   const logout = () => {

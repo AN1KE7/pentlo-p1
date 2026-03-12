@@ -14,6 +14,10 @@ pentlo-p1/
 │   ├── assets/
 │   │   └── pentlo-illustration.png     # Hero illustration asset
 │   ├── components/
+│   │   ├── dashboard/
+│   │   │   ├── EventCard.jsx           # Dashboard event card component
+│   │   │   ├── Sidebar.jsx             # Dashboard sidebar navigation
+│   │   │   └── Topbar.jsx              # Dashboard top bar
 │   │   ├── navigation/
 │   │   │   ├── Nav.jsx                 # Glassmorphism navbar with mobile menu
 │   │   │   └── Footer.jsx             # Footer component
@@ -22,13 +26,16 @@ pentlo-p1/
 │   ├── context/
 │   │   └── AuthContext.jsx             # Global authentication context (login/logout)
 │   ├── layouts/
-│   │   ├── MarketingLayout.jsx         # Marketing pages layout (Nav + Footer + AuthModal)
-│   │   └── AuthLayout.jsx              # Auth pages layout (minimal, centered)
+│   │   ├── AuthLayout.jsx              # Auth pages layout (minimal, centered)
+│   │   ├── DashboardLayout.jsx         # Dashboard pages layout (Sidebar + Topbar)
+│   │   └── MarketingLayout.jsx         # Marketing pages layout (Nav + Footer + AuthModal)
 │   ├── pages/
 │   │   ├── auth/
 │   │   │   └── SignIn.jsx              # Standalone sign-in page
+│   │   ├── dashboard/
+│   │   │   └── dashboard.jsx           # Main dashboard page
 │   │   └── marketing/
-│   │       └── Lander.jsx              # Landing hero section
+│   │       └── LandingPage.jsx         # Landing hero section
 │   ├── routes/
 │   │   └── ProtectedRoute.jsx          # Auth guard — redirects to /signin if not logged in
 │   ├── App.css                         # App-level styles
