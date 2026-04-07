@@ -1,11 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
 
 const navItems = [
-  { label: 'Overview',  icon: '📊', path: '/dashboard' },
-  { label: 'Events',    icon: '🎉', path: '/events' },
-  { label: 'Calendar',  icon: '📅', path: '/calendar' },
-  { label: 'Invites',   icon: '✉️', path: '/invites' },
-  { label: 'Settings',  icon: '⚙️', path: '/settings' },
+  { label: 'Overview', icon: '📊', path: '/dashboard' },
+  { label: 'Events', icon: '🎉', path: '/events' },
+  { label: 'Calendar', icon: '📅', path: '/calendar' },
+  { label: 'Invites', icon: '✉️', path: '/invites' },
+  { label: 'Settings', icon: '⚙️', path: '/settings' },
 ]
 
 export default function Sidebar() {
@@ -13,14 +13,15 @@ export default function Sidebar() {
 
   return (
     <aside
+      style={{ backgroundColor: 'ffffff' }}
       className="w-64 shrink-0 h-full flex flex-col
-                 backdrop-blur-xl bg-white/10 border-r border-white/20 shadow-xl
+                 backdrop-blur-xl border-r border-white/20 shadow-xl
                  py-6 px-4 z-20"
     >
       {/* Brand */}
       <Link
         to="/dashboard"
-        className="text-2xl font-bold tracking-widest text-white select-none mb-10 px-2"
+        className="text-2xl font-bold tracking-widest text-black select-none mb-10 px-2"
       >
         Pentlo
       </Link>
@@ -45,13 +46,13 @@ export default function Sidebar() {
           <Link
             key={label}
             to={path}
+            style={location.pathname === path ? { backgroundColor: '#f2f2f2' } : {}}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
                         transition duration-200 cursor-pointer no-underline
-                        ${
-                          location.pathname === path
-                            ? 'bg-white/20 text-white scale-[1.02]'
-                            : 'text-white hover:bg-white/15 hover:scale-105'
-                        }`}
+                        ${location.pathname === path
+                ? 'text-black scale-[1.02]'
+                : 'text-black hover:bg-white/15 hover:scale-105'
+              }`}
           >
             <span className="text-base">{icon}</span>
             {label}

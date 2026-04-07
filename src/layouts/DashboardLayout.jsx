@@ -6,9 +6,12 @@ export default function DashboardLayout() {
   return (
     <div className="relative flex h-screen w-full overflow-hidden">
       {/* ── Pentlo animated gradient background ── */}
-      <div className="fixed inset-0 w-screen h-screen pointer-events-none flex items-center justify-center">
+      {/* <div className="fixed inset-0 w-screen h-screen pointer-events-none flex items-center justify-center">
         <div className="pentlo-glow w-[150vmax] h-[150vmax] opacity-50" />
-      </div>
+      </div> */}
+
+      {/* ── White background ── */}
+      <div className="fixed inset-0 bg-white" />
 
       {/* ── Sidebar ── */}
       <Sidebar />

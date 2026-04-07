@@ -11,8 +11,8 @@ export default function Topbar() {
         <input
           type="text"
           placeholder="Search events ..."
-          className="w-full px-4 py-2 rounded-xl text-sm text-white placeholder-white/40
-                     bg-white/10 border border-white/20 backdrop-blur-md
+          className="w-full px-4 py-2 rounded-xl text-sm text-gray-600 placeholder:text-gray-400
+                     bg-white/10 border border-gray-300 backdrop-blur-md
                      outline-none focus:ring-2 focus:ring-white/30 transition duration-200"
         />
       </div>
