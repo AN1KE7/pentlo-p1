@@ -9,44 +9,59 @@ A premium SaaS landing page built with **React**, **Vite**, **Tailwind CSS**, an
 ```
 pentlo-p1/
 ├── public/
-│   └── pentlo-logo.svg                 # Brand logo (SVG)
+│   └── pentlo-logo.svg                   # Brand logo (SVG)
 ├── src/
 │   ├── assets/
-│   │   └── pentlo-illustration.png     # Hero illustration asset
+│   │   ├── icons/                        # Icon assets (empty)
+│   │   └── images/
+│   │       └── pentlo-illustration.png   # Hero illustration asset
 │   ├── components/
 │   │   ├── dashboard/
-│   │   │   ├── EventCard.jsx           # Dashboard event card component
-│   │   │   ├── Sidebar.jsx             # Dashboard sidebar navigation
-│   │   │   └── Topbar.jsx              # Dashboard top bar
+│   │   │   ├── CreateEventForm.jsx       # Create-event form with date/time/location fields
+│   │   │   ├── MainContent.jsx           # Dashboard main content area
+│   │   │   ├── ProfileDropdown.jsx       # User profile dropdown with logout
+│   │   │   ├── Sidebar.jsx               # Dashboard sidebar navigation
+│   │   │   ├── TimeBlock.jsx             # Time-block display component
+│   │   │   ├── TimezonePicker.jsx        # Searchable timezone picker
+│   │   │   ├── ToggleSwitch.jsx          # Reusable toggle switch component
+│   │   │   └── Topbar.jsx                # Dashboard top bar
+│   │   ├── events/
+│   │   │   ├── EventCard.jsx             # Event card component
+│   │   │   └── EventForm.jsx             # Event form component
 │   │   ├── navigation/
-│   │   │   ├── Nav.jsx                 # Glassmorphism navbar with mobile menu
-│   │   │   └── Footer.jsx             # Footer component
+│   │   │   ├── Nav.jsx                   # Glassmorphism navbar with mobile menu
+│   │   │   └── Footer.jsx               # Footer component
 │   │   └── ui/
-│   │       └── AuthModal.jsx           # Global sign-in modal overlay
+│   │       └── AuthModal.jsx             # Global sign-in modal overlay
 │   ├── context/
-│   │   └── AuthContext.jsx             # Global authentication context (login/logout)
+│   │   └── AuthContext.jsx               # Global authentication context (login/logout)
 │   ├── layouts/
-│   │   ├── AuthLayout.jsx              # Auth pages layout (minimal, centered)
-│   │   ├── DashboardLayout.jsx         # Dashboard pages layout (Sidebar + Topbar)
-│   │   └── MarketingLayout.jsx         # Marketing pages layout (Nav + Footer + AuthModal)
+│   │   ├── AuthLayout.jsx                # Auth pages layout (minimal, centered)
+│   │   ├── DashboardLayout.jsx           # Dashboard pages layout (Sidebar + Topbar)
+│   │   └── MarketingLayout.jsx           # Marketing pages layout (Nav + Footer + AuthModal)
 │   ├── pages/
 │   │   ├── auth/
-│   │   │   └── SignIn.jsx              # Standalone sign-in page
+│   │   │   └── SignIn.jsx                # Standalone sign-in page
 │   │   ├── dashboard/
-│   │   │   └── dashboard.jsx           # Main dashboard page
+│   │   │   ├── Calendar.jsx              # Calendar page
+│   │   │   ├── CreateEvent.jsx           # Create event page
+│   │   │   ├── Dashboard.jsx             # Main dashboard overview page
+│   │   │   ├── Events.jsx                # Events listing page
+│   │   │   ├── Invites.jsx               # Invites page
+│   │   │   └── Settings.jsx              # Settings page
 │   │   └── marketing/
-│   │       └── LandingPage.jsx         # Landing hero section
+│   │       └── LandingPage.jsx           # Landing hero section
 │   ├── routes/
-│   │   └── ProtectedRoute.jsx          # Auth guard — redirects to /signin if not logged in
-│   ├── App.css                         # App-level styles
-│   ├── App.jsx                         # Root app component & route definitions
-│   ├── index.css                       # Global styles, design tokens & custom utilities
-│   └── main.jsx                        # App entry point (BrowserRouter + AuthProvider)
+│   │   └── ProtectedRoute.jsx            # Auth guard — redirects to /signin if not logged in
+│   ├── App.css                           # App-level styles
+│   ├── App.jsx                           # Root app component & route definitions
+│   ├── index.css                         # Global styles, design tokens & custom utilities
+│   └── main.jsx                          # App entry point (BrowserRouter + AuthProvider)
 ├── .gitignore
-├── eslint.config.js                    # ESLint configuration
-├── index.html                          # HTML entry point with SEO meta tags
-├── package.json                        # Dependencies & scripts
-├── vite.config.js                      # Vite configuration
+├── eslint.config.js                      # ESLint configuration
+├── index.html                            # HTML entry point with SEO meta tags
+├── package.json                          # Dependencies & scripts
+├── vite.config.js                        # Vite configuration
 └── README.md
 ```
 
